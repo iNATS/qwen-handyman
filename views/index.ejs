@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= typeof(title) !== 'undefined' ? title : 'Handyman SaaS Platform - Connect with Professional Handymen' %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">Handyman<span>SaaS</span></a>
+                
+                <ul class="nav-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#services">Services</a></li>
+                    <li><a href="/#portfolio">Portfolio</a></li>
+                    <li><a href="/#about">About</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                    
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register" class="btn btn-primary">Sign Up</a></li>
+                </ul>
+                
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Welcome to Your Professional Handyman Network</h1>
+                <p>Connect with skilled professionals for all your home improvement needs. Quality work, guaranteed satisfaction.</p>
+                <div class="hero-btns">
+                    <a href="/register" class="btn btn-primary">Join as a Professional</a>
+                    <a href="#services" class="btn btn-secondary">View Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>General Repairs</h3>
+                    <p>From leaky faucets to squeaky doors, we handle all your general household repairs efficiently.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-cut"></i>
+                    <h3>Carpentry</h3>
+                    <p>Custom shelving, cabinet repairs, trim work, and other woodwork solutions tailored to your needs.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Painting</h3>
+                    <p>Interior and exterior painting services to refresh and enhance the look of your space.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Electrical Work</h3>
+                    <p>Licensed electricians for installations, repairs, and upgrades to keep your home safe.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-wrench"></i>
+                    <h3>Plumbing</h3>
+                    <p>Expert plumbers for fixing leaks, installing fixtures, and addressing all your plumbing needs.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Drywall Repair</h3>
+                    <p>Fix holes, cracks, and damages to your walls for a smooth, finished appearance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="/images/project1.jpg" alt="Kitchen Remodel">
+                    <div class="portfolio-overlay">
+                        <h3>Kitchen Remodel</h3>
+                        <p>Complete kitchen renovation with custom cabinetry</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/images/project2.jpg" alt="Bathroom Fixtures">
+                    <div class="portfolio-overlay">
+                        <h3>Bathroom Upgrade</h3>
+                        <p>Modern bathroom fixtures and tiling</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="/images/project3.jpg" alt="Deck Construction">
+                    <div class="portfolio-overlay">
+                        <h3>Deck Building</h3>
+                        <p>Custom outdoor deck construction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Our Platform</h2>
+                    <p>HandymanSaaS is a comprehensive platform that connects skilled professionals with customers seeking quality home improvement services.</p>
+                    <p>Our network of vetted handymen provides reliable, efficient, and affordable solutions for residential and commercial maintenance needs.</p>
+                    <a href="/register" class="btn btn-primary">Join Our Network</a>
+                </div>
+                <div class="about-image">
+                    <img src="/images/handyman-working.jpg" alt="Handyman at Work">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>HandymanSaaS</h3>
+                    <p>Your trusted platform for connecting skilled handymen with customers.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/#services">Services</a></li>
+                        <li><a href="/#portfolio">Portfolio</a></li>
+                        <li><a href="/#about">About</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@handymansaas.com</p>
+                    <p>Phone: (123) 456-7890</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 HandymanSaaS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script>
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Thank you for your message! We will get back to you soon.');
+        this.reset();
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<header class="header">
+    <div class="container">
+        <nav class="navbar">
+            <a href="/" class="logo">Handyman<span>SaaS</span></a>
+            
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#portfolio">Portfolio</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#contact">Contact</a></li>
+                
+                <% if(typeof(user) !== 'undefined' && user) { %>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register" class="btn btn-primary">Sign Up</a></li>
+                <% } %>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </div>
+</header>
