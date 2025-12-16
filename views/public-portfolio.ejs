@@ -1,0 +1,180 @@
+<%- include('../partials/header') %>
+
+<section class="public-portfolio">
+    <div class="container">
+        <div class="portfolio-header">
+            <div class="portfolio-profile">
+                <h1><%= user.business_name %></h1>
+                <p><%= user.description || 'Professional handyman services' %></p>
+            </div>
+        </div>
+        
+        <div class="portfolio-content">
+            <!-- Services Section -->
+            <section id="services" class="services-section">
+                <h2>Services Offered</h2>
+                <div class="services-grid">
+                    <% if(services && services.length > 0) { %>
+                        <% services.forEach(service => { %>
+                            <div class="service-card">
+                                <% if(service.image_url) { %>
+                                    <img src="<%= service.image_url %>" alt="<%= service.title %>">
+                                <% } else { %>
+                                    <div class="service-placeholder">
+                                        <i class="fas fa-tools"></i>
+                                    </div>
+                                <% } %>
+                                <div class="service-info">
+                                    <h3><%= service.title %></h3>
+                                    <p><%= service.description %></p>
+                                    <% if(service.price) { %>
+                                        <p class="price">$<%= service.price %></p>
+                                    <% } %>
+                                    <p class="category"><%= service.category %></p>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No services listed yet.</p>
+                    <% } %>
+                </div>
+            </section>
+            
+            <!-- Portfolio Section -->
+            <section id="portfolio" class="portfolio-section">
+                <h2>Portfolio</h2>
+                <div class="portfolio-grid">
+                    <% if(portfolioItems && portfolioItems.length > 0) { %>
+                        <% portfolioItems.forEach(item => { %>
+                            <div class="portfolio-item">
+                                <img src="<%= item.image_url %>" alt="<%= item.title %>">
+                                <div class="portfolio-overlay">
+                                    <h3><%= item.title %></h3>
+                                    <p><%= item.description %></p>
+                                    <% if(item.client_name) { %>
+                                        <p class="client-name">Client: <%= item.client_name %></p>
+                                    <% } %>
+                                    <% if(item.date_completed) { %>
+                                        <p class="date-completed">Completed: <%= new Date(item.date_completed).toLocaleDateString() %></p>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No portfolio items available.</p>
+                    <% } %>
+                </div>
+            </section>
+            
+            <!-- Testimonials Section -->
+            <section id="testimonials" class="testimonials-section">
+                <h2>Customer Reviews</h2>
+                <div class="testimonials-grid">
+                    <% if(testimonials && testimonials.length > 0) { %>
+                        <% testimonials.forEach(review => { %>
+                            <div class="testimonial-card">
+                                <div class="stars">
+                                    <% for(let i = 1; i <= 5; i++) { %>
+                                        <% if(i <= review.rating) { %>
+                                            <i class="fas fa-star"></i>
+                                        <% } else { %>
+                                            <i class="far fa-star"></i>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                                <p class="comment"><%= review.comment %></p>
+                                <p class="client"><strong><%= review.client_name %></strong></p>
+                                <p class="date"><%= new Date(review.date_posted).toLocaleDateString() %></p>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p>No reviews yet. Be the first to leave a review!</p>
+                    <% } %>
+                </div>
+            </section>
+            
+            <!-- Booking Section -->
+            <section id="booking" class="booking-section">
+                <h2>Book a Service</h2>
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerName">Your Name</label>
+                            <input type="text" id="customerName" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerEmail">Email</label>
+                            <input type="email" id="customerEmail" name="customerEmail" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerPhone">Phone</label>
+                            <input type="tel" id="customerPhone" name="customerPhone">
+                        </div>
+                        <div class="form-group">
+                            <label for="serviceSelect">Service</label>
+                            <select id="serviceSelect" name="serviceId">
+                                <option value="">Select a service</option>
+                                <% services.forEach(service => { %>
+                                    <option value="<%= service.id %>"><%= service.title %></option>
+                                <% }) %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bookingDate">Preferred Date</label>
+                            <input type="date" id="bookingDate" name="bookingDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookingTime">Preferred Time</label>
+                            <input type="time" id="bookingTime" name="bookingTime" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingMessage">Additional Details</label>
+                        <textarea id="bookingMessage" name="message" rows="4"></textarea>
+                    </div>
+                    <input type="hidden" name="userId" value="<%= user.id %>">
+                    <button type="submit" class="btn btn-primary">Request Booking</button>
+                </form>
+            </section>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const bookingData = Object.fromEntries(formData);
+    
+    try {
+        const response = await fetch('/api/bookings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookingData)
+        });
+        
+        const result = await response.json();
+        
+        if(response.ok) {
+            alert('Your booking request has been submitted successfully! The handyman will contact you soon.');
+            this.reset();
+        } else {
+            alert(result.message || 'Booking request failed');
+        }
+    } catch (error) {
+        alert('An error occurred while submitting your booking request');
+        console.error(error);
+    }
+});
+
+// Set minimum date for booking to today
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('bookingDate').setAttribute('min', today);
+</script>
